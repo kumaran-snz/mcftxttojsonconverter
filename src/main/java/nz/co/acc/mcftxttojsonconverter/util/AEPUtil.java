@@ -5,5 +5,5 @@ public interface AEPUtil {
 	public static final String OUTPUT_FOLDER_PROP = "OutputFolder";
 	public static final String FILE_EXTENTION_JSON = ".json";
 	public static final String FILE_EXTENTION_TXT = ".txt";
-	
+	public static final String PROPERTY_FILE = "/mcf.properties";
 }

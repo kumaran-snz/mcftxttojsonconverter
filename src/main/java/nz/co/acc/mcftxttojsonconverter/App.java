@@ -10,6 +10,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import nz.co.acc.mcftxttojsonconverter.model.FileMetaData;
 import nz.co.acc.mcftxttojsonconverter.util.AEPUtil;
 
 /**
@@ -25,7 +29,10 @@ public class App
     	InputTxtFileProcessor inputTextFileProcessor = new InputTxtFileProcessor();
         for (File file : getInputFilesDirectory().listFiles()) {
         	System.out.println("Found test file : " + file.getName());
-        	inputTextFileProcessor.processInputTestFile(file);
+        	FileMetaData fileMetaData = inputTextFileProcessor.processInputTestFile(file);
+        	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        	String jsonString = gson.toJson(fileMetaData);
+        	System.out.println(jsonString);
         }
     }
     

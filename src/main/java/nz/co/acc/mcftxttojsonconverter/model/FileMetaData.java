@@ -111,6 +111,11 @@ public class FileMetaData {
     public void setFormatVersion(FileMetaData.FormatVersion formatVersion) {
         this.formatVersion = formatVersion;
     }
+    
+    public void setFormatVersionStringValue(String formatVersion) {
+    	setFormatVersion(FileMetaData.FormatVersion.valueOf(formatVersion));
+    }
+
 
     /**
      * Calendar month in which the data pertains.
@@ -200,6 +205,10 @@ public class FileMetaData {
      */
     public void setAccreditedEmployers(List<AccreditedEmployer> accreditedEmployers) {
         this.accreditedEmployers = accreditedEmployers;
+    }
+    
+    public void addAccreditedEmployers(AccreditedEmployer accreditedEmployer) {
+    	this.accreditedEmployers.add(accreditedEmployer);
     }
 
     @Override
@@ -302,7 +311,6 @@ public class FileMetaData {
                 return constant;
             }
         }
-
     }
 
 

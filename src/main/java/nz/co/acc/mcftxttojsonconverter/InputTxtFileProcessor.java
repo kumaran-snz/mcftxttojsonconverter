@@ -13,7 +13,10 @@ import nz.co.acc.mcftxttojsonconverter.model.ClaimHeaderRecord;
 import nz.co.acc.mcftxttojsonconverter.model.ClaimMetaData;
 import nz.co.acc.mcftxttojsonconverter.model.EmployeeRecord;
 import nz.co.acc.mcftxttojsonconverter.model.FileMetaData;
+import nz.co.acc.mcftxttojsonconverter.model.IncapacityRecord;
 import nz.co.acc.mcftxttojsonconverter.model.InjuryRecord;
+import nz.co.acc.mcftxttojsonconverter.model.ReviewRecord;
+import nz.co.acc.mcftxttojsonconverter.model.SummaryRecord;
 
 public class InputTxtFileProcessor {
 
@@ -187,6 +190,241 @@ public class InputTxtFileProcessor {
 					employeeRecord.setHomeEmail(fields.get(17));
 				
 				// @TODO : Need NHI Number
+				break;
+				
+			case ("#INCAPACITY"):
+				IncapacityRecord incapacityRecord = new IncapacityRecord();
+				claim.setIncapacityRecord(incapacityRecord);
+				
+				// Incapacity from Date
+				incapacityRecord.setDateOfFirstIncapacity(fields.get(1));
+				
+				//@TODO:
+				incapacityRecord.setReturnToWorkDuringIncapacityDate("");
+				incapacityRecord.setEndOfIncapacityDate("");
+				incapacityRecord.setDateFirstWeeklyCompensationPaymentMade("");
+				incapacityRecord.setDateInitialNeedsAssessmentCompleted("");
+				incapacityRecord.setDateIndividualRehabilitationPlanAgreed("");
+				incapacityRecord.setDateOfSubsequentIncapacity("");
+				incapacityRecord.setReturnToWorkDuringIncapacityType("");
+				incapacityRecord.setEndOfIncapacityType("");
+				incapacityRecord.setDateEntitlementStoppedNonCompliance("");
+				incapacityRecord.setDateEntitlementReinstatedNonCompliance("");
+				incapacityRecord.setNumberOfWeeklyCompensationDaysPaid(2);
+				break;
+				
+			case ("#DISPUTES"):
+				ReviewRecord reviewRecord = new ReviewRecord();
+				claim.setReviewRecord(reviewRecord);
+				
+				reviewRecord.setReviewIdentifier("RI12345");
+				// Nature of Dispute
+				reviewRecord.setNatureOfReview(fields.get(1));
+				
+				//Date of filing
+				reviewRecord.setDateReviewFiled(fields.get(2));
+				
+				// Who filed review
+				reviewRecord.setWhoFiledReview(fields.get(3));
+				
+				// Review Outcome
+				reviewRecord.setReviewOutcome(fields.get(6));
+				
+				// @TODO:
+				// Administrative Outcome
+				reviewRecord.setAdministrativeReviewOutcome("");
+				// DateAESendsInformationToReviewer
+				reviewRecord.setDateAeSendsInformationToReviewer("");
+				// Case Conference Date
+				reviewRecord.setCaseConferenceDate("");
+				// Review Head	ing StartDate
+				reviewRecord.setReviewHearingStartDate("");
+				// Review Decision Date
+				reviewRecord.setReviewDecisionDate("");
+				break;
+				
+			case ("#SUMMARY"):
+				SummaryRecord summaryRecord = new SummaryRecord();
+				claim.setSummaryRecord(summaryRecord);
+				// earningsRelatedCompensationFullUnabatedAmount
+				String weeklyCompansationFullAmount = fields.get(1);
+				if (isValidValue(weeklyCompansationFullAmount))
+					summaryRecord.setWeeklyCompensationFullAmount(Double.parseDouble(weeklyCompansationFullAmount));
+				// earningsRelatedCompensationAbatedNegative
+				String weeklyCompensationAbated = fields.get(2);
+				if (isValidValue(weeklyCompansationFullAmount))
+					summaryRecord.setWeeklyCompensationAbated(Double.parseDouble(weeklyCompensationAbated));
+				
+				// Vocation Rehabilitation Assessment
+				String vocationalRA = fields.get(3);
+				if (isValidValue(vocationalRA))
+					summaryRecord.setVocationalRehabilitationAssessment(Double.parseDouble(vocationalRA));
+				
+				// Independent Allowance
+				String independateAllowance = fields.get(4);
+				if (isValidValue(independateAllowance))
+					summaryRecord.setIndependenceAllowance(Double.parseDouble(independateAllowance));
+				
+				// Independent Allowance Assessment
+				String independentAllowanceAssessment = fields.get(5);
+				if (isValidValue(independentAllowanceAssessment)) 
+					summaryRecord.setIndependenceAllowanceAssessment(Double.parseDouble(independentAllowanceAssessment));
+				
+				String vocationalRSaE = fields.get(12);
+				if (isValidValue(vocationalRSaE))
+					summaryRecord.setVocationalRehabilitationServiceAndEquipment(Double.parseDouble(vocationalRSaE));
+				
+				String socialRehabAssesment = fields.get(13);
+				if (isValidValue(socialRehabAssesment))
+					summaryRecord.setSocialRehabilitationAssessment(Double.parseDouble(socialRehabAssesment));
+				
+				String socialRehabHomeHelp = fields.get(14);
+				if (isValidValue(socialRehabHomeHelp))
+					summaryRecord.setSocialRehabilitationHomeHelp(Double.parseDouble(socialRehabHomeHelp));
+				
+				String socialRehabAttendantCare = fields.get(15);
+				if (isValidValue(socialRehabAttendantCare))
+					summaryRecord.setSocialRehabilitationAttendantCare(Double.parseDouble(socialRehabAttendantCare));
+				
+				String socialRehabChildCare = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String socialRehabEquipment = fields.get(17);
+				if (isValidValue(socialRehabEquipment))
+					summaryRecord.setSocialRehabilitationEquipment(Double.parseDouble(socialRehabEquipment));
+				
+				String socialRehabModificationToHome = fields.get(18);
+				if (isValidValue(socialRehabModificationToHome))
+					summaryRecord.setSocialRehabilitationModificationsToHome(Double.parseDouble(socialRehabModificationToHome));
+				
+				String socialRehabModificationToVehicle = fields.get(19);
+				if (isValidValue(socialRehabModificationToVehicle))
+					summaryRecord.setSocialRehabilitationModificationsToVehicle(Double.parseDouble(socialRehabModificationToVehicle));
+				
+				String socialRehabTrainingEducation = fields.get(20);
+				if (isValidValue(socialRehabTrainingEducation))
+					summaryRecord.setSocialRehabilitationTrainingEducation(Double.parseDouble(socialRehabTrainingEducation));
+				
+				String socialRehabCapitalExpenditure = fields.get(21);
+				if (isValidValue(socialRehabCapitalExpenditure))
+					summaryRecord.setSocialRehabilitationCapitalExpenditureOther(Double.parseDouble(socialRehabCapitalExpenditure));
+				
+				String generalPractitioner = fields.get(22);
+				if (isValidValue(generalPractitioner))
+					summaryRecord.setGeneralPractitioner(Double.parseDouble(generalPractitioner));
+				
+				String physiotherapist = fields.get(23);
+				if (isValidValue(physiotherapist))
+					summaryRecord.setPhysiotherapist(Double.parseDouble(physiotherapist));
+				
+				String specialistConsultation = fields.get(24);
+				if (isValidValue(specialistConsultation))
+					summaryRecord.setSpecialistConsultation(Double.parseDouble(specialistConsultation));
+				
+				String nurse = fields.get(25);
+				if (isValidValue(nurse))
+					summaryRecord.setNurse(Double.parseDouble(nurse));
+				
+				String pharmaceutical = fields.get(26);
+				if (isValidValue(pharmaceutical))
+					summaryRecord.setPharmaceutical(Double.parseDouble(pharmaceutical));
+				
+				String radiology = fields.get(16);
+				if (isValidValue(radiology))
+					summaryRecord.setRadiology(Double.parseDouble(radiology));
+				
+				String audiologist = fields.get(16);
+				if (isValidValue(audiologist))
+					summaryRecord.setAudiologist(Double.parseDouble(audiologist));
+				
+				String acupuncturist = fields.get(16);
+				if (isValidValue(acupuncturist))
+					summaryRecord.setAcupuncturist(Double.parseDouble(acupuncturist));
+				
+				String chiropractor = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String counsellor = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String occupationalTherapist = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String dentalTreatment = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String osteopath = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String laboratoryCosts = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String speechTherapist = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String podiatrist = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String optometrist = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String otherMedicalTreatments = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String hospitalSurgical = fields.get(40);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String hospicalImplatsExcludingProcedureCost = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String hospitalOtherCosts = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String conveyanceForMedicalTreatmentEmergency = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String conveyanceForMedicalTreatmentNonEmergency = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String accomodationCost = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String escortCost = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String reviewCosts = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String misceallaneousCosts = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String lumpsum = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
+				
+				String totalAmountPaidToDate = fields.get(16);
+				if (isValidValue(socialRehabChildCare))
+					summaryRecord.setSocialRehabilitationChildCare(Double.parseDouble(socialRehabChildCare));
 				break;
 			}
 		}

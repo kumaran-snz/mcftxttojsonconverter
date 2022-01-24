@@ -67,6 +67,10 @@ public class AccreditedEmployer {
     public void setClaimMetaData(ClaimMetaData claimMetaData) {
         this.claimMetaData = claimMetaData;
     }
+    
+    public void addClaimData(Claim claim) {
+    	this.claims.add(claim);
+    }
 
     /**
      * List of claims submitted by the Accredited Employer.

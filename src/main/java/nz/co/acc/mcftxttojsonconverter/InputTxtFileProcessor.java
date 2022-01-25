@@ -235,15 +235,15 @@ public class InputTxtFileProcessor {
 				
 				// @TODO:
 				// Administrative Outcome
-				reviewRecord.setAdministrativeReviewOutcome("");
+//				reviewRecord.setAdministrativeReviewOutcome("");
 				// DateAESendsInformationToReviewer
-				reviewRecord.setDateAeSendsInformationToReviewer("");
+//				reviewRecord.setDateAeSendsInformationToReviewer("");
 				// Case Conference Date
-				reviewRecord.setCaseConferenceDate("");
+//				reviewRecord.setCaseConferenceDate("");
 				// Review Head	ing StartDate
-				reviewRecord.setReviewHearingStartDate("");
+//				reviewRecord.setReviewHearingStartDate("");
 				// Review Decision Date
-				reviewRecord.setReviewDecisionDate("");
+//				reviewRecord.setReviewDecisionDate("");
 				break;
 				
 			case ("#SUMMARY"):

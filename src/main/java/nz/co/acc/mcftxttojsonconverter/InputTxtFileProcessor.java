@@ -190,6 +190,7 @@ public class InputTxtFileProcessor {
 					employeeRecord.setHomeEmail(fields.get(17));
 				
 				// @TODO : Need NHI Number
+				employeeRecord.setNhiNumber("EQP6694");
 				break;
 				
 			case ("#INCAPACITY"):
@@ -200,6 +201,7 @@ public class InputTxtFileProcessor {
 				incapacityRecord.setDateOfFirstIncapacity(fields.get(1));
 				
 				//@TODO:
+				/**
 				incapacityRecord.setReturnToWorkDuringIncapacityDate("");
 				incapacityRecord.setEndOfIncapacityDate("");
 				incapacityRecord.setDateFirstWeeklyCompensationPaymentMade("");
@@ -211,6 +213,7 @@ public class InputTxtFileProcessor {
 				incapacityRecord.setDateEntitlementStoppedNonCompliance("");
 				incapacityRecord.setDateEntitlementReinstatedNonCompliance("");
 				incapacityRecord.setNumberOfWeeklyCompensationDaysPaid(2);
+				**/
 				break;
 				
 			case ("#DISPUTES"):
